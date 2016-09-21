@@ -16,20 +16,20 @@ var knex = require('knex')({
 // Here we use a Promise.all to handle table creation, doing it synchronously introduces conflicts where foreign keys
 // reference tables that have not been created
 Promise.all([
-  knex.schema.createTable('organizations', function(table) {
+  knex.schema.createTableIfNotExists('orgs', function(table) {
     table.increments('id').primary();
     table.string('name').unique();
   }),
 
-  knex.schema.createTable('users', function(table) {
+  knex.schema.createTableIfNotExists('users', function(table) {
     table.increments('id').primary();
     table.string('username').unique();
     table.integer('perm');
     table.string('password');
-    table.integer('org_id').references('id').inTable('organizations');
+    table.integer('orgs_id').unsigned().references('id').inTable('orgs');
   }),
 
-  knex.schema.createTable('projects', function(table) {
+  knex.schema.createTableIfNotExists('projs', function(table) {
     table.increments('id').primary();
     table.string('name');
     table.string('projId');
@@ -52,7 +52,7 @@ Promise.all([
     table.integer('orgs_id').unsigned().references('id').inTable('orgs');
   }),
 
-  knex.schema.createTable('expenses', function(table) {
+  knex.schema.createTableIfNotExists('expenses', function(table) {
     table.increments('id').primary();
     table.string('category');
     table.string('glCode');
@@ -81,7 +81,8 @@ Promise.all([
    }),
 ]);
 
-
 var Bookshelf = require('bookshelf')(knex);
+
+Bookshelf.plugin('registry');
 
 module.exports = Bookshelf;
