@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 // let's go!
 import React from 'react';
 // user curly braces for named
@@ -43,4 +41,3 @@ const router = (
 
 // we can render Main because we imported it.
 render(router, document.getElementById('root'));
->>>>>>> dev
