@@ -4,6 +4,7 @@
 
 //Added module dependencies
 var bodyParser = require('body-parser');
+var config = require('../../webpack.config.dev');
 var express = require('express');
 var path = require('path');
 var webpack = require('webpack');
@@ -11,6 +12,15 @@ var session = require('express-session');
 
 //instantiate our server with express and webpack for deployment
 var app = express();
+var compiler = webpack(config);
+
+//require wepack middleware
+app.use(require('webpack-dev-middleware')(compiler, {
+  noInfo: true,
+  publicPath: config.output.publicPath
+}));
+
+app.use(require('webpack-hot-middleware')(compiler));
 
 //requires bodyParser through middleware
 app.use(bodyParser.json());
@@ -37,15 +47,6 @@ var port = process.env.PORT || 7000;
 
 //imports our endpoints
 require('./routes.js')(app);
-
-var Users = require('./controllers/userController.js');
-
-Users.makeUser({username: 'test', password: 'test', orgId: 0}, function(user) {
-	Users.getUser(user.username, function(user) {
-		console.log(user);
-	});
-});
-
 
 app.listen(port, function listeningOnPort() {
   console.log('Listening on port ', port);
