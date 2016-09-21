@@ -1,9 +1,15 @@
+/**
+ *    This file creates our server using express and implements webpack for deployment
+ **/
+
 //Added module dependencies
 var bodyParser = require('body-parser');
 var express = require('express');
 var path = require('path');
+var webpack = require('webpack');
+var session = require('express-session');
 
-//instantiate server
+//instantiate our server with express and webpack for deployment
 var app = express();
 
 //requires bodyParser through middleware
@@ -20,8 +26,16 @@ app.use(function setHeaders(req, res, next) {
     next();
 });
 
-var port = process.env.PORT || 3000;
+//do we still need this
+app.use(session({
+  secret: 'secret session',
+  resave: false,
+  saveUninitialized: true
+}));
 
+var port = process.env.PORT || 7000;
+
+//imports our endpoints
 require('./routes.js')(app);
 
 var Users = require('./controllers/userController.js');
@@ -34,6 +48,5 @@ Users.makeUser({username: 'test', password: 'test', orgId: 0}, function(user) {
 
 
 app.listen(port, function listeningOnPort() {
-  console.log('Listening on port ', port)
+  console.log('Listening on port ', port);
 });
-
