@@ -47,25 +47,25 @@ const Projects = React.createClass({
             </div>
           }
 
-        	<Table striped bordered>
-        		<thead>
-        			<tr id="readOnlyHeader">
-        				<th>Name</th>
-        				<th>Project ID</th>
+          <Table striped bordered>
+            <thead>
+              <tr id="readOnlyHeader">
+                <th>Name</th>
+                <th>Project ID</th>
                 <th>Created By</th>
-        				<th>Project Status</th>
+                <th>Project Status</th>
                 <th>Estimate to Complete</th>
-        				<th>Cost to Date</th>
-        			</tr>
-        		</thead>
-        		<tbody>
-        			{this.props.short ? this.props.projects.slice(-3).map((project, idx) =>
-            			<ProjectNode key={idx} idx={idx} {...this.props} project={project} switchModal={this.switchModal}/>)
+                <th>Cost to Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.short ? this.props.projects.slice(-3).map((project, idx) =>
+                  <ProjectNode key={idx} idx={idx} {...this.props} project={project} switchModal={this.switchModal}/>)
                 : this.props.projects.map((project, idx) =>
                   <ProjectNode key={idx} idx={idx} {...this.props} project={project} switchModal={this.switchModal}/>
               )}
-        		</tbody>
-        	</Table>
+            </tbody>
+          </Table>
         </Panel>
       </div>
     );

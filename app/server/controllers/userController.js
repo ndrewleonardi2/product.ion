@@ -14,11 +14,11 @@
 var User = require('../models/user.js');
 
 exports.makeUser = function(data, cb) {
-	new User(data).save().then(cb);
+  new User(data).save().then(cb);
 };
 
 exports.getUser = function(name, cb) {
-	new User({username: name}).fetch({withRelated: ['org', 'projects']}).then(cb);
+  new User({username: name}).fetch({withRelated: ['org', 'projects']}).then(cb);
 };
 // {withRelated: ['orgs']}
 

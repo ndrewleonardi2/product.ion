@@ -14,17 +14,17 @@
 var Project = require('../models/project.js');
 
 exports.getProj = function(projId, cb) {
-	new Project({projId: projId}).fetch({withRelated: ['budgets', 'org', 'expenses', 'users']}).then(cb);
+  new Project({projId: projId}).fetch({withRelated: ['budgets', 'org', 'expenses', 'users']}).then(cb);
 };
 
 exports.getProjById = function(id, cb) {
-	new Project({id:id}).fetch({withRelated: ['budgets', 'org', 'expenses', 'users']}).then(cb);
+  new Project({id:id}).fetch({withRelated: ['budgets', 'org', 'expenses', 'users']}).then(cb);
 }
 
 exports.getProjs = function(cb) {
-	new Project().fetchAll().then(cb);
+  new Project().fetchAll().then(cb);
 };
 
 exports.makeProj = function(data, cb) {
-	new Project(data).save().then(cb);
+  new Project(data).save().then(cb);
 };

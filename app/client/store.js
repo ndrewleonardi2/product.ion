@@ -28,7 +28,7 @@ const messages = {
   password: ""
 };
 const modals = {
-	pitch: false,
+  pitch: false,
   addUser: false,
   csv: false
 };

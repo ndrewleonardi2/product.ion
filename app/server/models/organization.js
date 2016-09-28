@@ -1,17 +1,14 @@
 
 var Bookshelf = require('../db.js');
-var User  = require('./user.js');
-var Project = require('./project.js');
-
 
 var Organization = Bookshelf.Model.extend({
-	tableName: 'organizations',
-	users: function() {
-		return this.hasMany(User);
-	},
-	projects: function() {
-		return this.hasMany(Project);
-	}
+  tableName: 'orgs',
+  users: function() {
+    return this.hasMany('User', 'orgs_id');
+  },
+  projects: function() {
+    return this.hasMany('Project', 'orgs_id');
+  }
 })
 
-module.exports = Organization;
+module.exports = Bookshelf.model('Organization', Organization);

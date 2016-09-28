@@ -81,7 +81,7 @@ const Pitch = React.createClass({
   componentWillReceiveProps: function(newProps) {
     if (newProps.budgets) {
       const proj = "proj" + this.state.id;
-      
+
       this.setState(
         {budgets: newProps.budgets[proj]},
         this.calculateTotalBudget
