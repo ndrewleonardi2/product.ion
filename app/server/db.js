@@ -6,9 +6,9 @@ var knex = require('knex')({
   client: 'mysql',
   connection: {
     host      : 'mysqlcluster11.registeredsite.com',
-    user      : 'yakadmin',
-    password  : '!Qaz2wsx3edc',
-    database  : 'yakkittyaks',
+    user      : 'root',
+    password  : 'development',
+    database  : 'product.ion',
     charset   : 'utf8'
   }
 });
