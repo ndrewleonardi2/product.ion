@@ -5,13 +5,24 @@
 var knex = require('knex')({
   client: 'mysql',
   connection: {
-    host      : 'mysqlcluster11.registeredsite.com',
-    user      : 'yakadmin',
-    password  : '!Qaz2wsx3edc',
-    database  : 'yakkittyaks',
+    host      : 'localhost',
+    user      : 'root',
+    password  : 'Jn!&TbV&Ab0',
+    database  : 'productIon',
     charset   : 'utf8'
   }
 });
+
+// var knex = require('knex')({
+//   client: 'mysql',
+//   connection: {
+//     host      : 'mysqlcluster11.registeredsite.com',
+//     user      : 'yakadmin',
+//     password  : '!Qaz2wsx3edc',
+//     database  : 'yakkittyaks',
+//     charset   : 'utf8'
+//   }
+// });
 
 // Here we use a Promise.all to handle table creation, doing it synchronously introduces conflicts where foreign keys
 // reference tables that have not been created

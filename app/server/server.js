@@ -6,6 +6,7 @@
 var bodyParser = require('body-parser');
 var config = require('../../webpack.config.dev');
 var express = require('express');
+var mysql = require('mysql')
 var path = require('path');
 var webpack = require('webpack');
 var session = require('express-session');
@@ -51,3 +52,12 @@ require('./routes.js')(app);
 app.listen(port, function listeningOnPort() {
   console.log('Listening on port ', port);
 });
+
+var connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'Jn!&TbV&Ab0',
+  database: 'productIon',
+});
+
+connection.connect();
